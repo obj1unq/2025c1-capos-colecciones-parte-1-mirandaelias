@@ -1,1 +1,80 @@
-r
+import capos.*
+
+describe "Capos parte 1 "{
+ //1. rolando encuentra la espada del destino (la agarra)
+    test "Rolando sin artefactos y con capacidad 2 encuentra la espada,el libro y el collar y solo
+            agarra los dos primeros"{
+    //assert.that(rolando.artefactos().isEmpty()
+    //assert.that (rolando.tiene(espadaDeConan))
+    //assert.equals(#{espada},rolando.constain())
+    //assert.that(rolando.artefactos().constains(espada))
+    rolando.encontrar(espada)
+    assert.that(rolando.artefactos().constains(espada))
+    rolando.encontrar(libro)
+    rolando.encontrar(collar)
+    }
+
+    test "Rolando con espada ylibro, los deja en el castillo, luego con collar pasa lo mismo" {
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.irAMorada()
+        assert.equals(#{},rolando.artefactos())
+        assert.equals(#{espada,libro},castillo.baul())
+
+        rolando.encontrar(collar)
+        rolando.irAMorada()
+        assert.equals(#{},rolando.artefactos())
+        assert.equals(#{espada,libro,collar},castillo.baul())
+    }
+
+    test "Si el castillo tiene el collar y la espada y Rolando la armadura, entonces sus poseciones
+        son esos  artefactos "{
+            castillo.depositar(#{collar,espada})
+            rolando.encontrar(armadura)
+
+            assert.equals(#{collar,espada,armadura},rolando.posesiones())
+    }
+
+    test "Test historial"{
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.encontrar(collar)
+        rolando.irAMorada()
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+
+        assert.equals([espada,libro,collar,armadura,collar],rolando.historial())
+    }
+}
+
+
+/*
+1. rolando encuentra la espada del destino (la agarra)
+2. rolando encuentra el libro de hechizos (la agarra)
+3. rolando llega al castillo de piedra (deja en el castillo la espada y el libro de hechizos)
+4. rolando encuentra el collar divino (ahora si lo puede agarrar, ya que liberó espacio)
+3. rolando llega al castillo de piedra de nuevo(deja el collar, con lo cual ahora el castillo tiene el collar, la espada y el libro)
+*/
+
+/*
+#Ejemplo: 
+	Si el castillo tiene el collar, la espada. Rolando tiene la armadura. 
+	Entonces rolando posee el collar, la espada y la armadura.
+	El libro no lo posee.
+*/  
+
+/*
+1. rolando encuentra la espada del destino (la agarra)
+2. rolando encuentra el libro de hechizos (la agarra)
+3. rolando encuentra el collar divino (no lo agarra, ya que tiene la espada y el libro encima y su capacidad es de 2)
+4. rolando llega al castillo de piedra (deja en el castillo la espada y el libro de hechizos)
+5. rolando encuentra la armadura de acero valyrio (la agarra)
+6. rolando encuentra el collar divino (ahora si lo puede agarrar, ya que liberó espacio)
+
+Si consultamos la historia de encuentro con los artefactos debería ser:
+1. espada del destino 
+2. libro de hechicos
+3. collar divino
+4. armadura de acero valyrio
+5. collar divino (de nuevo!)
+*/
