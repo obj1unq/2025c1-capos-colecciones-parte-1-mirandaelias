@@ -167,4 +167,4 @@ const artefactoMasPoderoso= artefactosDeMorada.max
                                             //pero sigue devolviendo un artefacto
 return artefactoMasPoderoso.poder (personaje)
 */      //ahora con .poder(personaje) ya tengo el poder
-//
+///////////
